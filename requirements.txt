@@ -1,0 +1,20 @@
+# FastAPI 相關
+fastapi>=0.109.0
+uvicorn>=0.27.0
+python-multipart>=0.0.6  # 用於處理表單數據
+pydantic>=2.0.0
+
+# Google Gemini AI
+google-generativeai>=0.3.0
+
+# 環境變數管理
+python-dotenv>=1.0.0
+
+# 錯誤重試機制
+tenacity>=8.2.0
+
+# 排程任務
+APScheduler>=3.10.0
+
+# 其他工具
+python-magic>=0.4.27  # 用於檢測文件類型
