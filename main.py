@@ -35,7 +35,7 @@ api_key_cycle = cycle(API_KEYS)
 
 # 更新 configure 函數以使用循環的 API 金鑰
 def configure_genai():
-    """配置 Gemini API，每次調用時使用下一個可用的 API 金鑰"""
+    """配置 Gemini API���每次調用時使用下一個可用的 API 金鑰"""
     current_key = next(api_key_cycle)
     genai.configure(api_key=current_key)
     logger.info(f"使用 API 金鑰: {current_key}")
@@ -202,7 +202,7 @@ async def generate_content(platform: str, length: str, style: str, image_path: O
             Instagram用戶特性：
             - 年齡層10-30歲
             - 使用流行語、hashtag
-            - 口吻��鬆活潑，非正式
+            - 口吻鬆活潑，非正式
             - 喜歡使用當下流行的表達方式
             - 除非是正經內容，否則要用年輕人的語氣
             """,
@@ -231,7 +231,7 @@ async def generate_content(platform: str, length: str, style: str, image_path: O
             7. 請用繁體中文
             """,
             "sad": f"""
-            請仔細觀察這張圖片，並以感性悲傷的風格，創作一段觸動人心的��文。
+            請仔細觀察這張圖片，並以感性悲傷的風格，創作一段觸動人心的文。
             {platform_characteristics}
             要求：
             1. 根據平台用戶特性調整感性程度
@@ -259,7 +259,7 @@ async def generate_content(platform: str, length: str, style: str, image_path: O
             1. 根據平台用戶特性調整專業內容深度
             2. 描述圖片中的專業元素和知識點
             3. 使用平台常見的表達方式
-            4. 適當加入2-3個相關的emoji
+            4. 適當��入2-3個相關的emoji
             5. 確保文字長度符合要求：{length_text}
             6. 請用繁體中文
             """
@@ -357,5 +357,8 @@ async def generate_post(
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="localhost", port=5100, reload=True)
+    # 修改 host 為 "0.0.0.0" 以接受所有來源的連接
+    # PORT 使用環境變數，這樣可以讓雲端平台動態分配端口
+    port = int(os.getenv("PORT", 80))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
 
