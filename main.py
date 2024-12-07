@@ -359,6 +359,6 @@ if __name__ == "__main__":
     import uvicorn
     # 修改 host 為 "0.0.0.0" 以接受所有來源的連接
     # PORT 使用環境變數，這樣可以讓雲端平台動態分配端口
-    port = int(os.getenv("PORT", 80))
+    port = 80
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
 
