@@ -214,5 +214,51 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('image-description').value = '';
         document.getElementById('char-count').textContent = '0';
     });
+
+    // 添加響應式處理
+    function handleResponsive() {
+        const isMobile = window.innerWidth <= 768;
+        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+        
+        dropdownMenus.forEach(menu => {
+            // 在手機版中，點擊後自動關閉選單
+            if (isMobile) {
+                menu.addEventListener('click', () => {
+                    menu.style.display = 'none';
+                }, { once: true });
+            }
+        });
+    }
+
+    // 監聽視窗大小變化
+    window.addEventListener('resize', handleResponsive);
+    handleResponsive(); // 初始化時執行一次
+
+    // 修改圖片預覽的響應式處理
+    function adjustImagePreview() {
+        const preview = document.querySelector('.image-preview img');
+        if (preview) {
+            const isMobile = window.innerWidth <= 480;
+            preview.style.height = isMobile ? '200px' : '300px';
+        }
+    }
+
+    // 在圖片載入後調整大小
+    imageUploadInput.addEventListener('change', function() {
+        // ... 原有的上傳邏輯 ...
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    adjustImagePreview();
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    window.addEventListener('resize', adjustImagePreview);
 });
 
