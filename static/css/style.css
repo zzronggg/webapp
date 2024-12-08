@@ -13,7 +13,7 @@ body, html {
     background-position: center;
     background-attachment: fixed;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .header {
